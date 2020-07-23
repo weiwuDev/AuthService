@@ -16,14 +16,14 @@ public class AuthController {
 
     @PostMapping("/login")
     public Mono<ResponseEntity<ResponseObject>> login(WebSession webSession) {
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Login Successful", "SESSION=" + webSession.getId())));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Login Successful", webSession.getId())));
 
     }
 
     @PutMapping("/logout")
     public Mono<ResponseEntity<ResponseObject>> logout(WebSession webSession) {
         webSession.invalidate();
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Login Successful", "SESSION=" + webSession.getId())));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Login Successful", webSession.getId())));
     }
 
 }
