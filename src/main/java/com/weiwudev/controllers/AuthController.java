@@ -26,4 +26,9 @@ public class AuthController {
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Logout Successful", webSession.getId())));
     }
 
+    @PutMapping("/check")
+    public Mono<ResponseEntity<ResponseObject>> checkAuth(WebSession webSession) {
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("You are Authenticated", webSession.getId())));
+    }
+
 }

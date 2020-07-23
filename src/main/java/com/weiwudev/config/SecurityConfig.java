@@ -24,8 +24,8 @@ public class SecurityConfig {
 
         return http.securityContextRepository(securityContextRepository)
                 .authorizeExchange()
-                .pathMatchers("/logout", "/register").permitAll()
-                .pathMatchers("/login").hasAuthority("ROLE_USER")
+                .pathMatchers("/register").permitAll()
+                .pathMatchers("/login", "/check", "/logout").hasAuthority("ROLE_USER")
                 .and()
                 .httpBasic()
                 .and()
