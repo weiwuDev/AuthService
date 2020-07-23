@@ -23,7 +23,7 @@ public class AuthController {
     @PutMapping("/logout")
     public Mono<ResponseEntity<ResponseObject>> logout(WebSession webSession) {
         webSession.invalidate();
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Login Successful", webSession.getId())));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Logout Successful", webSession.getId())));
     }
 
 }
