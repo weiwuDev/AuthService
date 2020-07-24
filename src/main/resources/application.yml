@@ -15,6 +15,7 @@ spring:
       enabled: ${cloud_bus:true}
       refresh:
          enabled: ${cloud_bus_refresh:true}
+      id: ${spring.application.name}:${spring.profiles.active}:${random.uuid}
 
   session:
     store-type: ${session_store_type:redis}
@@ -43,7 +44,6 @@ eureka:
     hostname: ${HOSTNAME:${spring.application.name}}
     preferIpAddress: ${preferIpAddress:false}
     instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}:${server.port}
-
 
 
 
