@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import reactor.core.publisher.Mono;
 @RefreshScope
 public class AuthController {
 
-    @Value("$check.response.value:You are Authenticated")
+    @Value("${check.response.value:You are Authenticated}")
     private String checkResponse;
 
     @PostMapping("/login")
@@ -32,7 +33,7 @@ public class AuthController {
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Logout Successful", webSession.getId())));
     }
 
-    @PutMapping("/check")
+    @GetMapping("/check")
     public Mono<ResponseEntity<ResponseObject>> checkAuth(WebSession webSession) {
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(checkResponse, webSession.getId())));
     }
