@@ -23,19 +23,19 @@ public class AuthController {
 
     @PostMapping("/login")
     public Mono<ResponseEntity<ResponseObject>> login(WebSession webSession) {
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Login Successful", webSession.getId())));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Login Successful")));
 
     }
 
     @PutMapping("/logout")
     public Mono<ResponseEntity<ResponseObject>> logout(WebSession webSession) {
         webSession.invalidate();
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Logout Successful", webSession.getId())));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("Logout Successful")));
     }
 
     @GetMapping("/check")
     public Mono<ResponseEntity<ResponseObject>> checkAuth(WebSession webSession) {
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(checkResponse, webSession.getId())));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(checkResponse)));
     }
 
 }

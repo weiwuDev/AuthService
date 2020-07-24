@@ -9,5 +9,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResponseObject {
     private String message;
-    private String cookie;
 }
