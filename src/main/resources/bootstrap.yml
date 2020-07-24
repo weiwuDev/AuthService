@@ -2,7 +2,7 @@ spring:
   application:
     name: ${app_name:AuthService}
   profiles:
-    active: ${active_profile:default}
+    active: ${active_profile}
 
   cloud:
     config:
