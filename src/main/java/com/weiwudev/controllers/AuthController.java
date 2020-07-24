@@ -2,6 +2,8 @@ package com.weiwudev.controllers;
 
 
 import com.weiwudev.models.ResponseObject;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +14,11 @@ import reactor.core.publisher.Mono;
 
 
 @RestController
+@RefreshScope
 public class AuthController {
+
+    @Value("$check.response.value:You are Authenticated")
+    private String checkResponse;
 
     @PostMapping("/login")
     public Mono<ResponseEntity<ResponseObject>> login(WebSession webSession) {
@@ -28,7 +34,7 @@ public class AuthController {
 
     @PutMapping("/check")
     public Mono<ResponseEntity<ResponseObject>> checkAuth(WebSession webSession) {
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject("You are Authenticated", webSession.getId())));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(checkResponse, webSession.getId())));
     }
 
 }
